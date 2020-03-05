@@ -1,0 +1,72 @@
+﻿@model IEnumerable<MediApp.Models.Visit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Besuche</h2>
+
+<p>
+    @Html.ActionLink("Hinzufügen", "Create")
+</p>
+
+<form method="get">
+    <div class="row" style="margin-bottom: 30px;">
+        <div class="col-md-3">
+            <input type="date" name="from" class="form-control" value="@ViewBag.FilterFrom" />
+        </div>
+        <div class="col-md-3">
+            <input type="date" name="to" class="form-control" value="@ViewBag.FilterTo" />
+        </div>
+        <div class="col-md-3">
+            @Html.DropDownList("DoctorId", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary" type="submit">Filtern</button>
+        </div>
+    </div>
+</form>
+
+
+@if (Model.Count() == 0)
+{
+    <div class="alert alert-info">Keine Besuche gefunden</div>
+}
+
+@if (Model.Count() > 0)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Doctor.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Doctor.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td>
+                    @Html.ActionLink("Bearbeiten", "Edit", new { id = item.VisitId }) |
+                    @Html.ActionLink("Löschen", "Delete", new { id = item.VisitId })
+                </td>
+            </tr>
+        }
+    </table>
+}
+
