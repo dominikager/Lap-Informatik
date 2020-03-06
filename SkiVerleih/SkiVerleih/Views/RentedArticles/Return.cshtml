@@ -1,0 +1,63 @@
+﻿@model SkiVerleih.Models.RentedArticle
+
+@{
+    ViewBag.Title = "Zurückgeben";
+}
+
+<h2>Zurückgeben</h2>
+
+<h3>Möchten Sie diesen Artikel wiklich zurückgeben?</h3>
+<div>
+    <h4>Ausgeliehener Artikel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Article.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Article.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RentedFrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentedFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RentedTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentedTo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Zurückgeben" class="btn btn-default" />
+        </div>
+    }
+</div>

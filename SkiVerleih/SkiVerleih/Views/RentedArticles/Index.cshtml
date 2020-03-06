@@ -1,0 +1,87 @@
+﻿@model IEnumerable<SkiVerleih.ViewModels.RentedArticleView>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Ausgeliehene Artikel</h2>
+
+<p>
+    @Html.ActionLink("+ Ausleihen", "Create")
+</p>
+
+<form style="margin-bottom: 40px;">
+    <div class="row">
+        <div class="col-md-3">
+            <select class="form-control" name="isRented">
+                @if (@ViewBag.isRented)
+            {
+                <option value="true">Verliehen</option>
+                <option value="false">Zurückgegeben</option>
+        }
+                @if (!@ViewBag.isRented)
+            {
+                <option value="false">Zurückgegeben</option>
+                <option value="true">Verliehen</option>
+        }
+
+            </select>
+        </div>
+        <div class="col-md-3">
+            <input type="date" class="form-control" value="@ViewBag.FilterFrom" name="FilterFrom"/>
+        </div>
+        <div class="col-md-3">
+            <input type="date" class="form-control" value="@ViewBag.FilterTo" name="FilterTo"/>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary" type="submit">Filtern</button>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Article.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentedFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentedTo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Article.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.getFullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RentedFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RentedTo)
+        </td>
+        <td>
+            @if(@ViewBag.isRented) {
+                @Html.ActionLink("Zurückgeben", "Return", new { id = item.RentedArticleViewId })
+            }
+        </td>
+    </tr>
+}
+
+</table>
