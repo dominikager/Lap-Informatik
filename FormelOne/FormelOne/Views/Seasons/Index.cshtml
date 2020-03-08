@@ -1,0 +1,32 @@
+﻿@model IEnumerable<FormelOne.Models.Season>
+
+@{
+    ViewBag.Title = "Saisonen";
+}
+
+<h2>Saisonen</h2>
+
+<p>
+    @Html.ActionLink("Hinzufügen", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SeasonId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SeasonId })
+        </td>
+    </tr>
+}
+
+</table>

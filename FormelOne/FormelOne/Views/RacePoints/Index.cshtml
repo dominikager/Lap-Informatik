@@ -1,0 +1,68 @@
+﻿@model IEnumerable<FormelOne.Models.RacePoint>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Punkte Übersicht</h2>
+
+<form method="get">
+    <div class="row">
+        <div class="col-md-3">
+            @Html.DropDownList("SeasonId", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            @Html.DropDownList("DriverId", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-filter"></i> Filtern</button>
+        </div>
+        <div class="col-md-3">
+            <a href="/" class="btn btn-primary"><i class="glyphicon glyphicon-remove-sign"></i> Zurücksetzen</a>
+        </div>
+    </div>
+</form>
+
+
+<p>
+    @Html.ActionLink("Erstellen", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Driver.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Race.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.value)
+        </th>
+        <th>
+           Gesamtpunkte pro Saison
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Driver.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Race.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.value)
+        </td>
+        <td>
+            @item.PointsPerSeasion(item.Race.SeasonId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.RacePointId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.RacePointId })
+        </td>
+    </tr>
+}
+
+</table>
