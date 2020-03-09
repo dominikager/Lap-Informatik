@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Autorennstall.Models.RepairSparepart>
+
+@{
+    ViewBag.Title = "Einzelteile hinzufügen";
+}
+
+<h2>Teile</h2>
+
+<p>
+    @Html.ActionLink("Einzelteile hinzufügen", "Create", "RepairSpareparts", new { id = ViewBag.RepairId }, null)
+</p>
+@if (Model.Any())
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Sparepart.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sparepart.Price)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sparepart.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sparepart.Price)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", "RepairSpareparts", new { id = item.RepairSparepartID },null)
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div>Keine Teile zugeordnet</div>
+}

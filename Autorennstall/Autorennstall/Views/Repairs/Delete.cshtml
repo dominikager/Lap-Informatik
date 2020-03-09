@@ -1,0 +1,56 @@
+﻿@model Autorennstall.Models.Repair
+
+@{
+    ViewBag.Title = "Löschen";
+}
+
+<h2>Löschen</h2>
+
+<h3>Sind Sie sich sicher das der Eintrag gelöscht werden soll?</h3>
+<div>
+    <h4>Reparatur</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Driver.FName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Driver.FName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RepairType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RepairType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Löschen" class="btn btn-default" /> |
+            @Html.ActionLink("Zurück", "Index")
+        </div>
+    }
+</div>

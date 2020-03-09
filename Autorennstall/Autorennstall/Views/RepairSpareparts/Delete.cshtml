@@ -1,0 +1,28 @@
+﻿@model Autorennstall.Models.RepairSparepart
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Löschen</h2>
+
+<h3>Sind Sie sich sicher das der Eintrag gelöscht werden soll?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sparepart.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sparepart.Name)
+        </dd>
+    </dl>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Zurück", "AddSpareparts","Repairs",new { id = @ViewBag.RepairID },null)
+        </div>
+    }
+</div>
