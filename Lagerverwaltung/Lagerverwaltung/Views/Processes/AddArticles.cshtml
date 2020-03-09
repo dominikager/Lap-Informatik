@@ -7,7 +7,7 @@
 <h2>Geschäftsfall Artikel</h2>
 
 <p>
-    @Html.ActionLink("Hinzufügen", "Create", "ProcessArticles")
+    @Html.ActionLink("Hinzufügen", "Create", "ProcessArticles", new { id = ViewBag.ProcessId }, null)
 </p>
 <table class="table">
     <tr>
@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.Article.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Process.Name)
+            @Html.DisplayNameFor(model => model.Article.Stock)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Amount)
@@ -29,14 +29,13 @@
             @Html.DisplayFor(modelItem => item.Article.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Process.Name)
+            <strong>@Html.DisplayFor(modelItem => item.Article.Stock)</strong> Aktuell auf Lager
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Amount)
+            @Html.DisplayFor(modelItem => item.Amount)x Verbucht
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProcessArticleId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProcessArticleId })
+            @Html.ActionLink("Delete", "Delete", "ProcessArticles", new { id=item.ProcessArticleId }, null)
         </td>
     </tr>
 }

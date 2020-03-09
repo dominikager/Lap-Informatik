@@ -17,8 +17,14 @@ namespace Lagerverwaltung.Models
         [Required]
         public decimal Price { get; set; }
 
-        [Required, Range(0, Int32.MaxValue)]
-        public int Stock { get; set; }
+        public int Stock {
+            get
+            {
+                var UnitOfWork = new UnitOfWork();
+
+                return UnitOfWork.ProcessArticles.StockByArticleId(this.ArticleId);
+            }
+        }
 
         public IEnumerable<ProcessArticle> ProcessArticles { get; set; }
     }

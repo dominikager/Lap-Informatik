@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -13,10 +14,11 @@ namespace Lagerverwaltung.Controllers
     public class ProcessArticlesController : BaseAuthController
     {
         // GET: ProcessArticles/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+            ViewBag.ProcessId = id;
             ViewBag.ArticleId = new SelectList(UnitOfWork.Articles.All(), "ArticleId", "Name");
-            ViewBag.ProcessId = new SelectList(UnitOfWork.Processes.All(), "ProcessId", "Name");
+
             return View();
         }
 
@@ -25,17 +27,37 @@ namespace Lagerverwaltung.Controllers
         // finden Sie unter https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProcessArticleId,ArticleId,ProcessId,Amount")] ProcessArticle processArticle)
+        public ActionResult Create([Bind(Include = "ProcessArticleId,ArticleId,ProcessId,Amount")] ProcessArticle processArticle, int? id)
         {
+            int FutureStock = 0;
+
             if (ModelState.IsValid)
             {
-                UnitOfWork.ProcessArticles.Create(processArticle);
-                UnitOfWork.SaveChanges();
-                return RedirectToAction("AddArticles", "Processes", new { id = processArticle.ProcessId });
+                int stock = UnitOfWork.ProcessArticles.StockByArticleId(processArticle.ArticleId);
+
+                var process = UnitOfWork.Processes.Find(id);
+
+                if(process.TransactionId == 2)
+                {
+                    FutureStock = stock - processArticle.Amount;
+                }
+
+                if(FutureStock >= 0)
+                {
+                    UnitOfWork.ProcessArticles.Create(processArticle);
+                    UnitOfWork.SaveChanges();
+                    return RedirectToAction("AddArticles", "Processes", new { id = processArticle.ProcessId });
+                }
             }
 
+            if(FutureStock < 0)
+            {
+                ViewBag.Alert = "Lagerstand nicht ausreichend";
+            }
+
+            ViewBag.ProcessId = id;
             ViewBag.ArticleId = new SelectList(UnitOfWork.Articles.All(), "ArticleId", "Name", processArticle.ArticleId);
-            ViewBag.ProcessId = new SelectList(UnitOfWork.Processes.All(), "ProcessId", "Name", processArticle.ProcessId);
+
             return View(processArticle);
         }
 
@@ -97,7 +119,8 @@ namespace Lagerverwaltung.Controllers
             ProcessArticle processArticle = UnitOfWork.ProcessArticles.Find(id);
             UnitOfWork.ProcessArticles.Remove(processArticle);
             UnitOfWork.SaveChanges();
-            return RedirectToAction("Index");
+
+            return RedirectToAction("AddArticles", "Processes", new { id = processArticle.ProcessId });
         }
     }
 }

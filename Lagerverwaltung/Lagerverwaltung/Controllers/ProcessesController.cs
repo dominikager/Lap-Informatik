@@ -37,6 +37,8 @@ namespace Lagerverwaltung.Controllers
 
         public ActionResult AddArticles(int? id)
         {
+            ViewBag.ProcessId = id;
+
             return View(UnitOfWork.ProcessArticles.FindByProcessId(id));
         }
 

@@ -91,3 +91,4 @@ C:\Users\dominikager\source\repos\Lagerverwaltung\Lagerverwaltung\obj\Debug\Lage
 C:\Users\dominikager\source\repos\Lagerverwaltung\Lagerverwaltung\obj\Debug\Lagerverwaltung.Migrations.Init.resources
 C:\Users\dominikager\source\repos\Lagerverwaltung\Lagerverwaltung\obj\Debug\Lagerverwaltung.csproj.GenerateResource.Cache
 C:\Users\dominikager\source\repos\Lagerverwaltung\Lagerverwaltung\obj\Debug\Lagerverwaltung.Migrations.RemovedAmount.resources
+C:\Users\dominikager\source\repos\Lagerverwaltung\Lagerverwaltung\obj\Debug\Lagerverwaltung.Migrations.RemoveStock.resources

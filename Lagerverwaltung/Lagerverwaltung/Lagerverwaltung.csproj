@@ -207,6 +207,10 @@
     <Compile Include="Migrations\202003091003441_RemovedAmount.Designer.cs">
       <DependentUpon>202003091003441_RemovedAmount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003091254145_RemoveStock.cs" />
+    <Compile Include="Migrations\202003091254145_RemoveStock.Designer.cs">
+      <DependentUpon>202003091254145_RemoveStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Article.cs" />
@@ -289,8 +293,6 @@
     <Content Include="Views\Processes\AddArticles.cshtml" />
     <Content Include="Views\ProcessArticles\Create.cshtml" />
     <Content Include="Views\ProcessArticles\Delete.cshtml" />
-    <Content Include="Views\ProcessArticles\Details.cshtml" />
-    <Content Include="Views\ProcessArticles\Edit.cshtml" />
     <Content Include="Views\ProcessArticles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -317,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003091003441_RemovedAmount.resx">
       <DependentUpon>202003091003441_RemovedAmount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003091254145_RemoveStock.resx">
+      <DependentUpon>202003091254145_RemoveStock.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
