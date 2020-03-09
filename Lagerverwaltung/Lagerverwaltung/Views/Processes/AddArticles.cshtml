@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Lagerverwaltung.Models.ProcessArticle>
+
+@{
+    ViewBag.Title = "Geschäftsfall Artikel";
+}
+
+<h2>Geschäftsfall Artikel</h2>
+
+<p>
+    @Html.ActionLink("Hinzufügen", "Create", "ProcessArticles")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Article.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Process.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Article.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Process.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProcessArticleId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProcessArticleId })
+        </td>
+    </tr>
+}
+
+</table>

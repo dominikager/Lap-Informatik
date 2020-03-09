@@ -190,6 +190,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\BaseAuthConroller.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -283,6 +284,11 @@
     <Content Include="Views\RentedArticles\Create.cshtml" />
     <Content Include="Views\RentedArticles\Return.cshtml" />
     <Content Include="Views\RentedArticles\Index.cshtml" />
+    <Content Include="Views\Articles\Create.cshtml" />
+    <Content Include="Views\Articles\Delete.cshtml" />
+    <Content Include="Views\Articles\Details.cshtml" />
+    <Content Include="Views\Articles\Edit.cshtml" />
+    <Content Include="Views\Articles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

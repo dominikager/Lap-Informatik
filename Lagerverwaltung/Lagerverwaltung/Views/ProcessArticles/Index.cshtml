@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Lagerverwaltung.Models.ProcessArticle>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Article.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Process.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Article.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Process.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProcessArticleId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProcessArticleId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProcessArticleId })
+        </td>
+    </tr>
+}
+
+</table>
